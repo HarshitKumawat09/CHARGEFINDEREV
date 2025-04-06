@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EV Savings Calculator | Jaipur EV Chargers</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/evcalculator.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="calculator-container">
+        <div class="calculator-header">
+            <h1><i class="fas fa-calculator"></i> ACCURATE EV SAVINGS CALCULATOR</h1>
+            <p>Calculate exact savings when switching from petrol/diesel to electric</p>
+        </div>
+
+        <div class="calculator-body">
+            <div class="input-section">
+                <h2><i class="fas fa-car"></i> CURRENT VEHICLE DETAILS</h2>
+                
+                <div class="input-group">
+                    <label>Fuel Type:</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="vehicle-type" value="petrol" checked>
+                            <div class="radio-card">
+                                <i class="fas fa-gas-pump"></i>
+                                <span>Petrol</span>
+                            </div>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="vehicle-type" value="diesel">
+                            <div class="radio-card">
+                                <i class="fas fa-oil-can"></i>
+                                <span>Diesel</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label><i class="fas fa-road"></i> Daily Driving Distance:</label>
+                    <div class="slider-container">
+                        <input type="range" id="distance" min="5" max="200" value="40" step="1">
+                        <input type="number" id="distance-input" min="5" max="200" value="40">
+                        <span>km/day</span>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label><i class="fas fa-tachometer-alt"></i> Fuel Efficiency:</label>
+                    <div class="slider-container">
+                        <input type="range" id="fuel-economy" min="5" max="30" value="15" step="0.5">
+                        <input type="number" id="economy-input" min="5" max="30" value="15" step="0.5">
+                        <span>km/liter</span>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label><i class="fas fa-calendar-alt"></i> Ownership Period:</label>
+                    <div class="slider-container">
+                        <input type="range" id="lifespan" min="1" max="15" value="5" step="1">
+                        <input type="number" id="lifespan-input" min="1" max="15" value="5">
+                        <span>years</span>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label><i class="fas fa-rupee-sign"></i> Current Fuel Price:</label>
+                    <div class="price-display" id="current-fuel-price">₹105.41/liter</div>
+                    <small>Auto-updated from latest rates</small>
+                </div>
+                <div class="input-group">
+                    
+                    <label><i class="fas fa-rupee-sign"></i> Current Diesel Price:</label>
+                    <div class="price-display" id="current-diesel-price">₹95.41/liter</div>
+                    <small>Auto-updated from latest rates</small>
+                </div>
+            </div>
+            
+            <div class="result-section">
+                <h2><i class="fas fa-coins"></i> YOUR SAVINGS ANALYSIS</h2>
+                <div class="result-card">
+                    <div class="result-item fuel">
+                        <div class="result-label">
+                            <i class="fas fa-gas-pump"></i>
+                            <div>
+                                <span>Fuel Cost Savings</span>
+                                <small>Compared to electricity costs</small>
+                            </div>
+                        </div>
+                        <span id="fuel-savings">₹0</span>
+                    </div>
+                    <div class="result-item maintenance">
+                        <div class="result-label">
+                            <i class="fas fa-tools"></i>
+                            <div>
+                                <span>Maintenance Savings</span>
+                                <small>Fewer moving parts in EVs</small>
+                            </div>
+                        </div>
+                        <span id="maintenance-savings">₹0</span>
+                    </div>
+                    <div class="result-item tax">
+                        <div class="result-label">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                            <div>
+                                <span>Tax Benefits</span>
+                                <small>GST and road tax savings</small>
+                            </div>
+                        </div>
+                        <span id="tax-savings">₹0</span>
+                    </div>
+                    <div class="result-item total">
+                        <div class="result-label">
+                            <i class="fas fa-wallet"></i>
+                            <div>
+                                <span>Total Estimated Savings</span>
+                                <small>Over ownership period</small>
+                            </div>
+                        </div>
+                        <span id="total-savings">₹0</span>
+                    </div>
+                </div>
+                
+                <div class="savings-breakdown">
+                    <h3><i class="fas fa-chart-pie"></i> Savings Breakdown</h3>
+                    <div class="chart-container">
+                        <canvas id="savingsChart"></canvas>
+                    </div>
+                </div>
+                
+                <button id="calculate-btn">
+                    <i class="fas fa-sync-alt"></i> UPDATE CALCULATION
+                </button>
+                
+                <div class="disclaimer">
+                    <p><i class="fas fa-info-circle"></i> Calculations use real-time fuel prices and account for:</p>
+                    <ul>
+                        <li>Current electricity rates (₹8.5/kWh)</li>
+                        <li>EV efficiency (6.5 km/kWh)</li>
+                        <li>Annual maintenance differences</li>
+                        <li>Tax benefits for EVs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer Section -->
+  <footer class="app-footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Jaipur EV Chargers</h3>
+        <p>Find the nearest charging stations in Jaipur</p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="evcalculator.html">Ev Calculator</a></li>
+
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Connect</h3>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2023 Jaipur EV Chargers. All rights reserved.</p>
+    </div>
+  </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/evcalculator.js"></script>
+</body>
+</html>

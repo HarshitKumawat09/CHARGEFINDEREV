@@ -1,0 +1,223 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EV Stations List - Jaipur</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header class="app-header">
+    Same header as index.html
+    <div class="header-content">
+      <div class="logo">
+        <i class="fas fa-charging-station"></i>
+        <h1>Jaipur EV Chargers</h1>
+      </div>
+      <nav class="main-nav">
+        <a href="index.html"><i class="fas fa-map"></i> Map View</a>
+        <a href="stations.html" class="active"><i class="fas fa-list"></i> Station List</a>
+        <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="stations-main">
+    <div class="search-container">
+      <h2>Find Charging Stations Near You</h2>
+      <div class="search-box">
+        <button id="getLocationBtn">
+          <i class="fas fa-location-arrow"></i> Use My Current Location
+        </button>
+        <div class="range-selector">
+          <label for="radius">Search Radius:</label>
+          <select id="radius">
+            <option value="1">1 km</option>
+            <option value="3" selected>3 km</option>
+            <option value="5">5 km</option>
+            <option value="10">10 km</option>
+          </select>
+        </div>
+      </div>
+      <div id="locationStatus"></div>
+    </div>
+
+    <div class="stations-list" id="stationsList">
+      Stations will be loaded here dynamically
+      <div class="loading">
+        <i class="fas fa-spinner fa-spin"></i> Loading stations...
+      </div>
+    </div>
+
+    Station Details Modal
+    <div class="modal" id="stationModal">
+      <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2 id="modalStationName"></h2>
+        <div class="station-info">
+          <p><i class="fas fa-bolt"></i> <span id="modalChargingSpeed"></span></p>
+          <p><i class="fas fa-car-battery"></i> <span id="modalAvailableSlots"></span></p>
+          <p><i class="fas fa-clock"></i> <span id="modalOpeningHours"></span></p>
+          <p><i class="fas fa-map-marker-alt"></i> <span id="modalAddress"></span></p>
+        </div>
+        
+        <div class="reviews-section">
+          <h3>Reviews</h3>
+          <div id="reviewsList"></div>
+          
+          <form id="reviewForm">
+            <h3>Add Your Review</h3>
+            <input type="text" id="reviewName" placeholder="Your Name" required>
+            <textarea id="reviewText" placeholder="Your review..." required></textarea>
+            <div class="rating">
+              <span>Rating:</span>
+              <div class="stars">
+                <i class="far fa-star" data-rating="1"></i>
+                <i class="far fa-star" data-rating="2"></i>
+                <i class="far fa-star" data-rating="3"></i>
+                <i class="far fa-star" data-rating="4"></i>
+                <i class="far fa-star" data-rating="5"></i>
+              </div>
+              <input type="hidden" id="reviewRating" value="0" required>
+            </div>
+            <button type="submit">Submit Review</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    Same footer as index.html
+  </footer>
+
+  <script src="js/stations.js"></script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EV Stations List - Jaipur</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-content">
+      <div class="logo">
+        <i class="fas fa-charging-station"></i>
+        <h1>Jaipur EV Chargers</h1>
+      </div>
+      <nav class="main-nav">
+        <a href="index.html"><i class="fas fa-map"></i> Map View</a>
+        <a href="stations.html" class="active"><i class="fas fa-list"></i> Station List</a>
+        <a href="booking.html"><i class="fas fa-calendar-check"></i> Booking</a>
+        <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+        <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+        
+
+      </nav>
+    </div>
+  </header>
+
+  <main class="stations-main">
+    <div class="search-container">
+      <h2>Find Charging Stations in Jaipur</h2>
+      <div class="search-box">
+        <select id="areaSelect">
+          <option value="">All Areas</option>
+          <option>Vaishali Nagar</option>
+          <option>Malviya Nagar</option>
+          <option>Bani Park</option>
+          <option>Tonk Road</option>
+          <option>Civil Lines</option>
+          <option>Raja Park</option>
+        </select>
+        <button id="searchBtn"><i class="fas fa-search"></i> Search</button>
+      </div>
+      <div class="filter-box">
+        <select id="typeFilter">
+          <option value="">All Types</option>
+          <option>Public</option>
+          <option>Private</option>
+        </select>
+        <select id="statusFilter">
+          <option value="">All Statuses</option>
+          <option>Available</option>
+          <option>Busy</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="stations-list" id="stationsList">
+      <div class="loading">
+        <i class="fas fa-spinner fa-spin"></i> Loading stations...
+      </div>
+    </div>
+
+    <!-- Station Details Modal -->
+    <div class="modal" id="stationModal">
+      <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2 id="modalStationName"></h2>
+        <div class="station-info">
+          <p><i class="fas fa-bolt"></i> <span id="modalChargingSpeed"></span></p>
+          <p><i class="fas fa-car-battery"></i> <span id="modalAvailableSlots"></span></p>
+          <p><i class="fas fa-clock"></i> <span id="modalOpeningHours"></span></p>
+          <p><i class="fas fa-map-marker-alt"></i> <span id="modalAddress"></span></p>
+
+          <p><i class="fas fa-sync-alt"></i> <span id="modalLastUpdated"></span></p>
+        </div>
+        
+        <div class="reviews-section">
+          <h3>Reviews</h3>
+          <div id="reviewsList"></div>
+          
+          <!-- <form id="reviewForm">
+            <h3>Add Your Review</h3>
+            <input type="text" id="reviewName" placeholder="Your Name" required>
+            <textarea id="reviewText" placeholder="Your review..." required></textarea>
+            <div class="rating">
+              <span>Rating:</span>
+              <div class="stars">
+                <i class="far fa-star" data-rating="1"></i>
+                <i class="far fa-star" data-rating="2"></i>
+                <i class="far fa-star" data-rating="3"></i>
+                <i class="far fa-star" data-rating="4"></i>
+                <i class="far fa-star" data-rating="5"></i>
+              </div>
+              <input type="hidden" id="reviewRating" value="0" required>
+            </div>
+            <button type="submit">Submit Review</button>
+          </form> -->
+        </div>
+      </div>
+    </div>
+    <div class="coming-soon-notice">
+        ⚡ More charging stations coming soon to your area!
+      </div>
+  </main>
+  <div class="osm-attribution">
+    Address data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>
+  </div>
+
+  <footer class="app-footer">
+    <div class="footer-content">
+      <p>&copy; 2023 Jaipur EV Chargers. All rights reserved.</p>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- In your head or before closing body tag -->
+<script src="js/config.js"></script>
+<script src="js/stations.js"></script>
+</body>
+</html>

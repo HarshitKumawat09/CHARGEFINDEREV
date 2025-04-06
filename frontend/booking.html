@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Charging Station | Jaipur EV Chargers</title>
+  <link rel="stylesheet" href="css/booking.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header-container">
+      <div class="logo">
+        <i class="fas fa-charging-station"></i>
+        <h1>Jaipur EV Chargers</h1>
+      </div>
+      <nav class="nav">
+        <a href="index.html"><i class="fas fa-map"></i> Map</a>
+        <a href="stations.html"><i class="fas fa-list"></i> Stations</a>
+        <a href="booking.html" class="active"><i class="fas fa-calendar-check"></i> Book</a>
+        <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+        <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="booking-container">
+      <div class="station-card">
+        <img src="../images/ev.jpg.jpg" alt="EV Station" class="station-image">
+        <div class="station-details">
+          <h2 id="station-name">Jaipur Central Charging Hub</h2>
+          <p class="station-description">24/7 available charging station with 10 bays and amenities</p>
+          
+          <div class="station-meta">
+            <div class="meta-item">
+              <i class="fas fa-bolt"></i>
+              <span>50kW Fast Charging</span>
+            </div>
+            <div class="meta-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Tonk Road, Jaipur</span>
+            </div>
+            <div class="meta-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Dehmi Kalan, Jaipur</span>
+              </div>
+              <div class="meta-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Vaishali Nagar, Jaipur</span>
+              </div>
+              <div class="meta-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Bani Park, Jaipur</span>
+              </div>
+            <div class="meta-item">
+              <i class="fas fa-clock"></i>
+              <span>Open 24/7</span>
+            </div>
+            <div class="meta-item">
+              <i class="fas fa-rupee-sign"></i>
+              <span>(₹40 to ₹60) per 30 mins</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form id="booking-form" class="booking-form">
+        <h2><i class="fas fa-calendar-alt"></i> Booking Details</h2>
+        
+
+        <div class="form-group">
+            <label for="station-select"><i class="fas fa-charging-station"></i> Select Station</label>
+            <select id="station-select" required>
+              <option value="">Loading stations...</option>
+            </select>
+          </div>
+          
+          <div id="station-details" style="display:none;">
+            <div class="station-card">
+              <img id="station-image" src="" alt="Station Image" class="station-image">
+              <div class="station-info">
+                <h3 id="station-name"></h3>
+                <p><i class="fas fa-bolt"></i> <span id="station-speed"></span></p>
+                <p><i class="fas fa-map-marker-alt"></i> <span id="station-location"></span></p>
+                <p><i class="fas fa-clock"></i> <span id="station-hours"></span></p>
+              </div>
+            </div>
+          </div>
+
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="booking-date"><i class="far fa-calendar"></i> Date</label>
+            <input type="date" id="booking-date" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="duration"><i class="fas fa-clock"></i> Duration</label>
+            <select id="duration" required>
+              <option value="">Select duration</option>
+              <option value="30">30 minutes</option>
+              <option value="60">1 hour</option>
+              <option value="90">1.5 hours</option>
+              <option value="120">2 hours</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label><i class="fas fa-car"></i> Vehicle Type</label>
+          <div class="vehicle-options">
+            <label class="vehicle-option">
+              <input type="radio" name="vehicle-type" value="car" required>
+              <div class="vehicle-card">
+                <i class="fas fa-car"></i>
+                <span>Electric Car</span>
+              </div>
+            </label>
+            
+            <label class="vehicle-option">
+              <input type="radio" name="vehicle-type" value="bike">
+              <div class="vehicle-card">
+                <i class="fas fa-motorcycle"></i>
+                <span>Electric Bike</span>
+              </div>
+            </label>
+            
+            <label class="vehicle-option">
+              <input type="radio" name="vehicle-type" value="scooter">
+              <div class="vehicle-card">
+                <i class="fas fa-bicycle"></i>
+                <span>Electric Scooter</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label><i class="fas fa-clock"></i> Available Slots</label>
+          <div class="time-slots" id="time-slots">
+            <!-- Time slots will be inserted here by JavaScript -->
+          </div>
+        </div>
+
+        <div class="price-summary">
+          <div class="price-row">
+            <span>Base Price:</span>
+            <span id="base-price">₹0</span>
+          </div>
+          <div class="price-row">
+            <span>Service Fee:</span>
+            <span>₹10</span>
+          </div>
+          <div class="price-row total">
+            <span>Total Amount:</span>
+            <span id="total-price">₹0</span>
+          </div>
+        </div>
+
+        <button type="submit" class="book-now-btn">
+          <i class="fas fa-lock"></i> Confirm & Pay Now
+        </button>
+      </form>
+    </div>
+  </main>
+
+
+  <!-- Booking Receipt Modal -->
+  <div id="booking-receipt" class="receipt-modal" style="display: none;">
+    <div class="receipt-container">
+      <div class="receipt-header">
+        <i class="fas fa-check-circle"></i>
+        <h2>Booking Confirmed!</h2>
+        <p class="booking-reference">Reference #<span id="booking-id">EV123456</span></p>
+      </div>
+      
+      <div class="receipt-body">
+        <div class="receipt-detail">
+          <span class="detail-label">Station:</span>
+          <span class="detail-value" id="rcpt-station">Jaipur Central Charging Hub</span>
+        </div>
+        <div class="receipt-detail">
+          <span class="detail-label">Location:</span>
+          <span class="detail-value" id="rcpt-location">Tonk Road, Jaipur</span>
+        </div>
+        <div class="receipt-detail">
+          <span class="detail-label">Date & Time:</span>
+          <span class="detail-value" id="rcpt-datetime">15 Nov 2023, 14:30</span>
+        </div>
+        <div class="receipt-detail">
+          <span class="detail-label">Duration:</span>
+          <span class="detail-value" id="rcpt-duration">1 hour</span>
+        </div>
+        <div class="receipt-detail">
+          <span class="detail-label">Vehicle Type:</span>
+          <span class="detail-value" id="rcpt-vehicle">Electric Car</span>
+        </div>
+        <div class="receipt-detail">
+          <span class="detail-label">Charger Type:</span>
+          <span class="detail-value" id="rcpt-charger">50kW Fast Charging</span>
+        </div>
+        
+        <div class="receipt-divider"></div>
+        
+        <div class="receipt-detail total">
+          <span class="detail-label">Total Amount:</span>
+          <span class="detail-value" id="rcpt-total">₹60</span>
+        </div>
+      </div>
+      
+      <div class="receipt-footer">
+        <p>Thank you for choosing Jaipur EV Chargers</p>
+        <div class="receipt-actions">
+          <button id="share-receipt" class="action-btn">
+            <i class="fas fa-share-alt"></i> Share
+          </button>
+          <button id="download-receipt" class="action-btn">
+            <i class="fas fa-download"></i> Download
+          </button>
+          <button id="print-receipt" class="action-btn">
+            <i class="fas fa-print"></i> Print
+          </button>
+          <button id="close-receipt" class="action-btn">
+            <i class="fas fa-times"></i> Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <footer class="footer">
+    <div class="footer-container">
+      <p>&copy; 2023 Jaipur EV Chargers. All rights reserved.</p>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="js/config.js"></script>
+  <script src="js/booking.js"></script>
+</body>
+</html>
